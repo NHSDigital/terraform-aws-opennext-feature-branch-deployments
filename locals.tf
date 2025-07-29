@@ -40,7 +40,7 @@ locals {
       enable_accept_encoding_brotli = coalesce(try(var.cloudfront.cache_policy.enable_accept_encoding_brotli, null), true)
       enable_accept_encoding_gzip   = coalesce(try(var.cloudfront.cache_policy.enable_accept_encoding_gzip, null), true)
       cookies_config = merge({
-        cookie_behavior = "all",
+        cookie_behavior = "none",
         items           = []
       }, try(var.cloudfront.cache_policy.cookies_config, {}))
       headers_config = merge({
@@ -52,6 +52,7 @@ locals {
         items                 = []
       }, try(var.cloudfront.cache_policy.query_strings_config, {}))
     }
+    no_cache_paths = var.cloudfront.no_cache_paths
     origin_request_policy = try(var.cloudfront.origin_request_policy, null)
 
     custom_waf                = var.cloudfront.custom_waf
