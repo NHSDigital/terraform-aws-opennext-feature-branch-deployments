@@ -26,6 +26,7 @@ resource "aws_lambda_function" "function" {
   handler       = var.handler
   runtime       = var.runtime
   architectures = var.architectures
+  layers        = var.layers
   role          = aws_iam_role.lambda_role.arn
 
   kms_key_arn                    = var.kms_key_arn

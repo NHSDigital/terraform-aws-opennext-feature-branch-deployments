@@ -135,6 +135,12 @@ variable "reserved_concurrent_executions" {
   default     = 10
 }
 
+variable "layers" {
+  description = "List of Lambda Layer Version ARNs (max 5) to attach to the function"
+  type        = list(string)
+  default     = []
+}
+
 
 /**
  * Lambda Networking
