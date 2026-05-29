@@ -52,7 +52,7 @@ locals {
         items                 = []
       }, try(var.cloudfront.cache_policy.query_strings_config, {}))
     }
-    no_cache_paths = var.cloudfront.no_cache_paths
+    no_cache_paths        = var.cloudfront.no_cache_paths
     origin_request_policy = try(var.cloudfront.origin_request_policy, null)
 
     custom_waf                = var.cloudfront.custom_waf
@@ -80,6 +80,7 @@ locals {
       dead_letter_config             = try(var.server_options.function.dead_letter_config, null)
       reserved_concurrent_executions = coalesce(try(var.server_options.function.reserved_concurrent_executions, null), 10)
       code_signing_config            = try(var.server_options.function.code_signing_config, null)
+      layers                         = coalesce(try(var.server_options.function.layers, null), [])
     }
 
     log_group = {
@@ -142,6 +143,7 @@ locals {
       dead_letter_config             = try(var.image_optimization_options.function.dead_letter_config, null)
       reserved_concurrent_executions = coalesce(try(var.image_optimization_options.function.reserved_concurrent_executions, null), 3)
       code_signing_config            = try(var.image_optimization_options.function.code_signing_config, null)
+      layers                         = coalesce(try(var.image_optimization_options.function.layers, null), [])
     }
 
     log_group = {
@@ -192,6 +194,7 @@ locals {
       dead_letter_config             = try(var.revalidation_options.function.dead_letter_config, null)
       reserved_concurrent_executions = coalesce(try(var.revalidation_options.function.reserved_concurrent_executions, null), 3)
       code_signing_config            = try(var.revalidation_options.function.code_signing_config, null)
+      layers                         = coalesce(try(var.revalidation_options.function.layers, null), [])
     }
 
     log_group = {
@@ -243,6 +246,7 @@ locals {
       dead_letter_config             = try(var.warmer_options.function.dead_letter_config, null)
       reserved_concurrent_executions = coalesce(try(var.warmer_options.function.reserved_concurrent_executions, null), 3)
       code_signing_config            = try(var.warmer_options.function.code_signing_config, null)
+      layers                         = coalesce(try(var.warmer_options.function.layers, null), [])
     }
 
     log_group = {

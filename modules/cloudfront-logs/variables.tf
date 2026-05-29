@@ -103,3 +103,9 @@ variable "dead_letter_config" {
     target_arn = string
   })
 }
+
+variable "layers" {
+  description = "List of Lambda Layer Version ARNs (max 5) to attach to the function"
+  type        = list(string)
+  default     = []
+}
